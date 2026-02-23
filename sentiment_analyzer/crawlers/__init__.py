@@ -4,7 +4,7 @@
 提供平台适配器和爬虫基础类。
 """
 
-from crawlers.base import (
+from .base import (
     AuthenticationException,
     BaseCrawler,
     CrawlerException,
@@ -17,19 +17,19 @@ from crawlers.base import (
     RateLimitException,
     RateLimiter,
 )
-from crawlers.bloom_filter import BloomFilter, ScalableBloomFilter
-from crawlers.cleaner import CleanedContent, DataCleaner, create_default_cleaner, create_strict_cleaner
-from crawlers.proxy_pool import ProxyInfo as DetailedProxyInfo
-from crawlers.proxy_pool import ProxyPool as DetailedProxyPool
-from crawlers.proxy_pool import ProxyStrategy
-from crawlers.rate_limiter import MultiRateLimiter, RateLimit, TokenBucket
-from crawlers.reddit import (
+from .bloom_filter import BloomFilter, ScalableBloomFilter
+from .cleaner import CleanedContent, DataCleaner, create_default_cleaner, create_strict_cleaner
+from .proxy_pool import ProxyInfo as DetailedProxyInfo
+from .proxy_pool import ProxyPool as DetailedProxyPool
+from .proxy_pool import ProxyStrategy
+from .rate_limiter import MultiRateLimiter, RateLimit, TokenBucket
+from .reddit import (
     RedditComment,
     RedditConfig,
     RedditCrawler,
     RedditParser,
 )
-from crawlers.telegram import (
+from .telegram import (
     TelegramChannel,
     TelegramChat,
     TelegramConfig,

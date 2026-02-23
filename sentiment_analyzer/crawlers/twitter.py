@@ -24,7 +24,7 @@ from .base import (
     RateLimitConfig,
     RateLimitException,
 )
-from storage.models import Post, User
+from ..storage.models import Post, User
 
 
 class TwitterRateLimitException(RateLimitException):

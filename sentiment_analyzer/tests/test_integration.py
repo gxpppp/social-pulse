@@ -15,19 +15,19 @@ import numpy as np
 import pytest
 import pytest_asyncio
 
-from storage.schema import User, Post, Interaction
-from storage.repository import (
+from ..storage.schema import User, Post, Interaction
+from ..storage.repository import (
     Database,
     UserRepository,
     PostRepository,
     InteractionRepository,
 )
-from crawlers.rate_limiter import MultiRateLimiter
-from crawlers.proxy_pool import ProxyPool, ProxyInfo
-from crawlers.bloom_filter import BloomFilter
-from crawlers.cleaner import DataCleaner
-from analysis.features import FeatureExtractor, UserFeatureVector
-from analysis.anomaly import IsolationForestDetector, ZScoreDetector, AnomalyDetector
+from ..crawlers.rate_limiter import MultiRateLimiter
+from ..crawlers.proxy_pool import ProxyPool, ProxyInfo
+from ..crawlers.bloom_filter import BloomFilter
+from ..crawlers.cleaner import DataCleaner
+from ..analysis.features import FeatureExtractor, UserFeatureVector
+from ..analysis.anomaly import IsolationForestDetector, ZScoreDetector, AnomalyDetector
 
 
 class TestEndToEndPipeline:

@@ -12,8 +12,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 import pytest_asyncio
 
-from storage.schema import Base, User, Post, Interaction, CrawlTask, UserFeature
-from storage.repository import (
+from ..storage.schema import Base, User, Post, Interaction, CrawlTask, UserFeature
+from ..storage.repository import (
     Database,
     UserRepository,
     PostRepository,

@@ -11,7 +11,7 @@ from unittest.mock import MagicMock, patch
 import numpy as np
 import pytest
 
-from analysis.features import (
+from ..analysis.features import (
     FeatureExtractor,
     TextFeatures,
     SentimentResult,

@@ -21,7 +21,7 @@ from .base import (
     ParseException,
     RateLimitConfig,
 )
-from storage.models import Platform, Post, User
+from ..storage.models import Platform, Post, User
 
 if TYPE_CHECKING:
     from telethon import TelegramClient

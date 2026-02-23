@@ -10,7 +10,7 @@ import click
 from loguru import logger
 
 from sentiment_analyzer.config.settings import Settings, get_settings
-from sentiment_analyzer.crawlers.base import CrawlerConfig, Platform
+from sentiment_analyzer.crawlers.base import BaseCrawler, Platform
 from sentiment_analyzer.crawlers.twitter import TwitterCrawler
 from sentiment_analyzer.crawlers.weibo import WeiboCrawler
 from sentiment_analyzer.crawlers.reddit import RedditCrawler

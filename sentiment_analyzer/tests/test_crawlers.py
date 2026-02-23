@@ -12,10 +12,10 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from crawlers.rate_limiter import TokenBucket, RateLimit, MultiRateLimiter
-from crawlers.proxy_pool import ProxyPool, ProxyInfo, ProxyStrategy
-from crawlers.bloom_filter import BloomFilter, ScalableBloomFilter
-from crawlers.cleaner import DataCleaner, CleanedContent, create_default_cleaner, create_strict_cleaner
+from ..crawlers.rate_limiter import TokenBucket, RateLimit, MultiRateLimiter
+from ..crawlers.proxy_pool import ProxyPool, ProxyInfo, ProxyStrategy
+from ..crawlers.bloom_filter import BloomFilter, ScalableBloomFilter
+from ..crawlers.cleaner import DataCleaner, CleanedContent, create_default_cleaner, create_strict_cleaner
 
 
 class TestTokenBucket:
