@@ -59,4 +59,11 @@ SAMPLE_HASHTAGS = ["#人工智能", "#AI", "#机器学习", "#深度学习", "#�
 
 
 def generate_random_user(platform: Platform, index: int) -> User:
-    """
+    """生成随机用户"""
+    user_data = SAMPLE_USERS[index % len(SAMPLE_USERS)]
+    return User(
+        user_id=f"user_{index:04d}",
+        platform=platform,
+        username=user_data["username"],
+        display_name=user_data["display_name"],
+        bio
