@@ -174,9 +174,9 @@ class SQLiteStore:
                     """
                     INSERT OR REPLACE INTO users (
                         platform, user_id, username, display_name, bio,
-                        followers_count, following_count, posts_count,
-                        created_at, verified, avatar_url, location, raw_data
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        followers_count, friends_count, posts_count,
+                        created_at, verified, avatar_url, avatar_hash, first_seen, last_updated, raw_data
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         user.platform,
@@ -185,12 +185,14 @@ class SQLiteStore:
                         user.display_name,
                         user.bio,
                         user.followers_count,
-                        user.following_count,
+                        user.friends_count,
                         user.posts_count,
                         user.created_at,
                         user.verified,
                         user.avatar_url,
-                        user.location,
+                        user.avatar_hash,
+                        user.first_seen,
+                        user.last_updated,
                         json.dumps(user.raw_data)
                     )
                 )
