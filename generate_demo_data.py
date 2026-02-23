@@ -66,4 +66,130 @@ def generate_random_user(platform: Platform, index: int) -> User:
         platform=platform,
         username=user_data["username"],
         display_name=user_data["display_name"],
-        bio
+        bio=f"热爱{random.choice(['科技', 'AI', '编程', '创新'])}",
+        followers_count=random.randint(100, 10000),
+        friends_count=random.randint(50, 1000),
+        posts_count=random.randint(10, 500),
+        created_at=datetime.now() - timedelta(days=random.randint(30, 1000)),
+        verified=random.random() > 0.7,
+        avatar_url=f"https://example.com/avatar_{index}.jpg",
+        raw_data={},
+    )
+
+
+def generate_random_post(platform: Platform, author: User, index: int) -> Post:
+    """生成随机帖子"""
+    content = random.choice(SAMPLE_CONTENTS)
+    
+    # 随机添加话题标签
+    if random.random() > 0.5:
+        content += " " + random.choice(SAMPLE_HASHTAGS)
+    
+    # 随机添加提及
+    if random.random() > 0.8:
+        content += " @" + random.choice(SAMPLE_USERS)["username"]
+    
+    created_at = datetime.now() - timedelta(
+        days=random.randint(0, 30),
+        hours=random.randint(0, 23),
+        minutes=random.randint(0, 59)
+    )
+    
+    return Post(
+        post_id=f"post_{index:06d}",
+        platform=platform,
+        author_id=author.user_id,
+        author_name=author.username,
+        content=content,
+        created_at=created_at,
+        language="zh",
+        likes=random.randint(0, 1000),
+        shares=random.randint(0, 100),
+        comments=random.randint(0, 50),
+        hashtags=[tag for tag in SAMPLE_HASHTAGS if tag in content],
+        mentions=["tech_guru"] if "@" in content else [],
+        urls=[],
+        media_urls=[f"https://example.com/image_{index}.jpg"] if random.random() > 0.6 else [],
+        is_retweet=random.random() > 0.9,
+        parent_id=None,
+        sentiment_score=random.uniform(-1, 1),
+        sentiment_label=random.choice(["positive", "neutral", "negative"]),
+        raw_data={},
+    )
+
+
+async def generate_demo_data(num_users: int = 10, num_posts: int = 100):
+    """
+    生成演示数据
+    
+    Args:
+        num_users: 生成用户数量
+        num_posts: 生成帖子数量
+    """
+    # 确保数据目录存在
+    Path("./data").mkdir(exist_ok=True)
+    
+    # 初始化存储
+    store = SQLiteStore("./data/sentiment.db")
+    await store.initialize()
+    
+    logger.info(f"开始生成演示数据: {num_users} 用户, {num_posts} 帖子")
+    
+    # 生成用户
+    users = []
+    for i in range(num_users):
+        user = generate_random_user(Platform.WEIBO, i)
+        await store.save_user(user)
+        users.append(user)
+        logger.debug(f"生成用户: {user.username}")
+    
+    logger.info(f"已生成 {len(users)} 个用户")
+    
+    # 生成帖子
+    posts_count = 0
+    for i in range(num_posts):
+        author = random.choice(users)
+        post = generate_random_post(Platform.WEIBO, author, i)
+        await store.save_post(post)
+        posts_count += 1
+        
+        if (i + 1) % 20 == 0:
+            logger.info(f"已生成 {i + 1}/{num_posts} 条帖子")
+    
+    logger.info(f"已生成 {posts_count} 条帖子")
+    
+    # 关闭存储
+    await store.close()
+    
+    logger.info("演示数据生成完成!")
+    return len(users), posts_count
+
+
+def main():
+    """主函数"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="生成演示数据")
+    parser.add_argument("--users", "-u", type=int, default=10, help="用户数量")
+    parser.add_argument("--posts", "-p", type=int, default=100, help="帖子数量")
+    
+    args = parser.parse_args()
+    
+    try:
+        user_count, post_count = asyncio.run(generate_demo_data(
+            num_users=args.users,
+            num_posts=args.posts
+        ))
+        print(f"\n✅ 演示数据生成完成!")
+        print(f"👥 用户数: {user_count}")
+        print(f"📝 帖子数: {post_count}")
+        print(f"📊 数据库: ./data/sentiment.db")
+        print(f"\n现在可以刷新仪表盘查看数据: http://localhost:8501")
+    except Exception as e:
+        logger.exception("生成数据失败")
+        print(f"\n❌ 生成失败: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
