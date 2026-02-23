@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from ..crawlers.base import Platform
+from sentiment_analyzer.crawlers.base import Platform
 
 
 class Settings(BaseSettings):

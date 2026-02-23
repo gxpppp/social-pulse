@@ -12,7 +12,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, AsyncIterator, Optional, Protocol
 
-from ..storage.models import Platform, Post, User
+from sentiment_analyzer.storage.models import Platform, Post, User
 
 
 class CrawlerStatus(str, Enum):

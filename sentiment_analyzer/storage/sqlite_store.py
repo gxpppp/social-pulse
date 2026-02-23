@@ -22,7 +22,8 @@ from sqlalchemy import (
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from ..crawlers.base import Platform, PostData, UserData
+from sentiment_analyzer.crawlers.base import Platform
+from sentiment_analyzer.storage.models import Post as PostData, User as UserData
 
 Base = declarative_base()
 

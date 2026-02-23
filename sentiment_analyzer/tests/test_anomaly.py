@@ -11,7 +11,7 @@ import numpy as np
 import pytest
 from numpy.typing import NDArray
 
-from ..analysis.anomaly import (
+from sentiment_analyzer.analysis.anomaly import (
     AnomalyType,
     AnomalyReport,
     TrendPoint,

@@ -21,7 +21,7 @@ from .base import (
     ParseException,
     RateLimitConfig,
 )
-from ..storage.models import Platform, Post, User
+from sentiment_analyzer.storage.models import Platform, Post, User
 
 
 @dataclass

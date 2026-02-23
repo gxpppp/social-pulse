@@ -19,8 +19,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from ..storage.schema import Base, User, Post, Interaction, CrawlTask, UserFeature
-from ..storage.repository import Database
+from sentiment_analyzer.storage.schema import Base, User, Post, Interaction, CrawlTask, UserFeature
+from sentiment_analyzer.storage.repository import Database
 
 
 @pytest.fixture(scope="session")

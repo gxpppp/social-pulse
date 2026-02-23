@@ -17,7 +17,7 @@ from typing import Any, Optional, Union
 import jieba
 from loguru import logger
 
-from ..storage.models import Post, User
+from sentiment_analyzer.storage.models import Post, User
 
 
 class SearchBackend(str, Enum):

@@ -32,7 +32,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.pool import NullPool, QueuePool
 
-from .models import InteractionType, Platform
+from sentiment_analyzer.storage.models import InteractionType, Platform
 
 
 class Base(DeclarativeBase):

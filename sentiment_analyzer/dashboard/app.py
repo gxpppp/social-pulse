@@ -31,7 +31,7 @@ from plotly.subplots import make_subplots
 from pyecharts import options as opts
 from pyecharts.charts import Graph, Line, Pie, Bar
 
-from ..config.settings import get_settings
+from sentiment_analyzer.config.settings import get_settings
 
 
 @dataclass

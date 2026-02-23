@@ -28,7 +28,7 @@ from .base import (
     RateLimitConfig,
     RateLimitException,
 )
-from ..storage.models import Interaction, InteractionType, Platform, Post, User
+from sentiment_analyzer.storage.models import Interaction, InteractionType, Platform, Post, User
 
 
 class WeiboAuthException(AuthenticationException):
